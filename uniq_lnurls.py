@@ -30,7 +30,7 @@ params = {"title": title,
           "max_withdrawable": max_with,
           "uses": uses,
           "wait_time": wait_time,
-          "is_unique": True}
+          "is_unique": False}
 
 headers = {"X-Api-Key" : x_api_key,
            "Content-type" : "application/json"}
