@@ -22,6 +22,7 @@ title = "My first Laisee"
 min_sats = 10
 max_sats = 10000
 allow_comment = True
+deduct_fees = False
 
 
 params = {"title": title,
