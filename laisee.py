@@ -27,6 +27,7 @@ allow_comment = True
 params = {"title": title,
           "min_sats": min_sats,
           "max_sats": max_sats,
+          "deduct_fees": deduct_fees,
           "allow_comment": allow_comment}
 
 headers = {"X-Api-Key" : x_api_key,
@@ -68,7 +69,7 @@ def create_laisee(params, headers):
 
 
 def write_csv(filename, data):
-    fieldnames = ['title', 'minsat', 'maxsat', 'comment', 'id', 'lnurl']
+    fieldnames = ['title', 'minsat', 'maxsat', 'comment', 'deduct_fees', 'id', 'lnurl']
     with open('csv/'+filename, mode='w') as csv_file:
         csv_writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         csv_writer.writeheader()
@@ -90,11 +91,13 @@ def process_csv(infile, headers):
                 minsat = row["minsat"]
                 maxsat = row["maxsat"]
                 allow_comment = row["comment"]
+                deduct_fees = row["deduct_fees"]
                 print(f'\t Title: {title},  Min/max satoshis: {minsat}-{maxsat}, Comment: {allow_comment}')
                 params = {"title": title,
                         "min_sats": int(minsat),
                         "max_sats": int(maxsat),
-                        "allow_comment": allow_comment}
+                        "allow_comment": allow_comment,
+                        "deduct_fees": deduct_fees}
                 sparams = json.dumps(params)
                 rdata = create_laisee(sparams, headers)
                 lnurl = rdata['lnurl']
@@ -104,6 +107,7 @@ def process_csv(infile, headers):
                 outdata['minsat'] = minsat
                 outdata['maxsat'] = maxsat
                 outdata['comment'] = allow_comment
+                outdata['deduct_fees'] = deduct_fees
                 outdata['id'] = lnid
                 outdata['lnurl'] = lnurl
                 output_links.append(outdata)

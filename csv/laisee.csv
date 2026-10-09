@@ -1,4 +1,4 @@
-title,minsat,maxsat,comment
-一本萬利,50,210,TRUE
-恭喜發財,50,210,FALSE
-龍馬精神,50,210,TRUE
+title,minsat,maxsat,comment,deduct_fees
+一本萬利,50,210,TRUE,TRUE
+恭喜發財,50,210,FALSE,TRUE
+龍馬精神,50,210,TRUE,FALSE
